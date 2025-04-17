@@ -56,23 +56,10 @@ apt update && apt install nasm
 ```bash
 cd benos
 ```
-4. Create a build directory
+4. Run make
 ```bash
-mkdir build
+make
 ```
-5. Compile the bootloader and the kernel
-```bash
-nasm -f bin build/bootloader.bin boot/bootloader.asm
-nasm -f bin build/kernel.bin kernel/kernel.asm
-nasm -f bin build/zeroes.bin boot/zeroes.asm
-```
-
-6. Create the disk image
-```bash
-cat build/bootloader.bin build/kernel.bin build/zeroes.bin /dev/zero | dd of=benos bs=512 count=2880
-```
-
-7. A file named "benos" should have been created!
 
 ### Windows
 *Contribution needed here*
@@ -82,7 +69,7 @@ cat build/bootloader.bin build/kernel.bin build/zeroes.bin /dev/zero | dd of=ben
 ## Run on an emulator
 This section teachs you how to run BenOS on an emulator named qemu.
 ```bash
-qemu-system-x86_64 -drive format=raw,file=benos
+qemu-system-x86_64 -drive format=raw,file=benos.img
 ```
 BenOS should run.
 
