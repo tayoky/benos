@@ -11,7 +11,7 @@ benos.img : kernel.bin boot.bin
 boot.bin : boot/boot.o boot.ld
 	ld -o $@ boot/boot.o -T boot.ld
 
-kernel.bin : ${OBJ} kernel.ld
+kernel.bin : ${OBJ} kernel.ld start.o
 	ld -o $@ ${OBJ} -T kernel.ld
 %.o : %.asm
 	nasm -f elf64 -o $@ $^ -i./include

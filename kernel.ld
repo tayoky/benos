@@ -1,12 +1,10 @@
-ENTRY(kmain)
+ENTRY(_start)
 OUTPUT_FORMAT("binary")
 OUTPUT(kernel.bin)
+STARTUP(start.o)
 
 SECTIONS {
 	. = 0x8000;
-	.start : {
-		*(.start)
-	}
 	.text : {
 		*(.text .text.*)
 	}
