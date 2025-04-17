@@ -44,7 +44,7 @@ global cmdInfo
 %endmacro
 
 ; --------------- CODE ---------------
-section .text
+section .start
 global kmain
 kmain:
 ; Initialize segments

@@ -9,7 +9,7 @@
 ; ===================================================================
 
 ; --------------- CONSTANTS ---------------
-%define BASE            0x7c00  ; Kernel address
+%define BASE            0x8000  ; Kernel address
 %define KERNEL_SIZE     50      ; Kernel size (in sectors)
 ; -----------------------------------------
 
@@ -48,7 +48,7 @@ _start:
     int 0x13
 
     push es
-    mov ax, kernel_base
+    mov ax, BASE
     mov es, ax
     mov bx, 0
 
@@ -65,7 +65,7 @@ _start:
     call BOOT_UTILS_print
 
 ; Jump to the kernel
-    jmp kmain
+    jmp BASE:0
 ; ------------------------------------
 
 ; --------------- INCLUDES ---------------

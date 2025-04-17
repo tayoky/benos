@@ -1,22 +1,16 @@
-ENTRY(_start)
+ENTRY(kmain)
 OUTPUT_FORMAT("binary")
-
-
-OUTPUT(benos.bin)
+OUTPUT(kernel.bin)
 
 SECTIONS {
-	. = 0x7C00;
-	.boot : {
-		*(.boot)
+	. = 0x8000;
+	.start : {
+		*(.start)
 	}
-	kernel_base = .;
 	.text : {
 		*(.text .text.*)
 	}
-
 	.data : {
 		*(.data .data.*)
 	}
 }
-
-
