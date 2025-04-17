@@ -44,11 +44,11 @@ global cmdInfo
 %endmacro
 
 ; --------------- CODE ---------------
-section .start
+section .text
 global kmain
 kmain:
 ; Initialize segments
-    mov ax, 0x1000
+    mov ax, 0x8000
     mov ds, ax
     mov es, ax
     mov ax, 0x8000
@@ -72,6 +72,7 @@ kmain:
     call STDIO_print
     mov si, NEWLINE
     call STDIO_print
+    mov ax, STDIO_print
 
 wait_for_key:
 ; Wait if a key is pressed to start the shell
