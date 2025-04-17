@@ -9,7 +9,7 @@
 ; ===================================================================
 
 ; --------------- CONSTANTS ---------------
-%define BASE            0x1000  ; Kernel address
+%define BASE            0x7c00  ; Kernel address
 %define KERNEL_SIZE     50      ; Kernel size (in sectors)
 ; -----------------------------------------
 
@@ -18,18 +18,15 @@
 ; ------------------------------------------------------
 
 ; --------------- CODE ---------------
+extern kmain
+extern kernel_base
 section .boot
 global _start
 _start:
 ; Cancel interrupts
     cli
 
-; Initialize segments and stack
-    mov ax, 0x07c0
-    mov ds, ax
-    mov es, ax
-    mov ax, 0x8000
-    mov ss, ax
+; Initialize stack
     mov sp, 0xf000
 
 ; Clear the screen
@@ -51,7 +48,7 @@ _start:
     int 0x13
 
     push es
-    mov ax, BASE
+    mov ax, kernel_base
     mov es, ax
     mov bx, 0
 
@@ -68,7 +65,7 @@ _start:
     call BOOT_UTILS_print
 
 ; Jump to the kernel
-    jmp BASE:0
+    jmp kmain
 ; ------------------------------------
 
 ; --------------- INCLUDES ---------------

@@ -11,6 +11,8 @@
 %include "fs.asm"
 %include "benlib.asm"
 
+global fileTable
+
 [bits 16]
 
 section .text

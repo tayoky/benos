@@ -1,7 +1,6 @@
 ENTRY(_start)
 OUTPUT_FORMAT("binary")
 
-STARTUP(boot.o)
 
 OUTPUT(benos.bin)
 
@@ -10,7 +9,7 @@ SECTIONS {
 	.boot : {
 		*(.boot)
 	}
-
+	kernel_base = .;
 	.text : {
 		*(.text .text.*)
 	}

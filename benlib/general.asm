@@ -7,6 +7,10 @@
 ; about BenOS.
 ; ===================================================================
 
+global SYS_LICENSE
+global SYS_NAME
+global SYS_VERSION
+
 [bits 16]
 section .data
 SYS_VERSION:            db          "0.0.9 Indev 2", 0  ; Current version of the system

@@ -7,6 +7,6 @@ all : benos.bin
 benos.bin : ${OBJ} linker.ld
 	ld -o $@ ${OBJ} -T linker.ld
 %.o : %.asm
-	nasm -f elf32 -o $@ $^ -i./include
+	nasm -f elf64 -o $@ $^ -i./include
 clean:
 	rm -f ${OBJ}

@@ -25,6 +25,14 @@ extern command_halt
 extern command_info
 extern command_help
 
+global shell_begin
+global shell_begin.command_unknow
+global prpBuffer
+global cmdTouch
+global cmdRm
+global cmdHelp
+global cmdInfo
+
 ; %1 -> command
 ; %2 -> comparison subroutine
 ; %3 -> action
