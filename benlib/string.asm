@@ -7,8 +7,13 @@
 ; that are used to work with strings.
 ; ===================================================================
 
-[bits 16]
+global STRING_compare
+global STRING_compare_start
+global STRING_length
+global STRING_split
 
+[bits 16]
+section .text
 ; Input:
 ; DI -> first string
 ; SI -> second string

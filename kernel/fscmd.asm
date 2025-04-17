@@ -1,5 +1,16 @@
-[bits 16]
+%include "benlib.asm"
 
+extern shell_begin
+extern prpBuffer
+extern cmdTouch
+extern cmdRm
+
+global command_ls
+global command_touch
+global command_rm
+
+[bits 16]
+section .text
 command_ls:
     call DISK_list_files
 
@@ -36,9 +47,11 @@ command_touch:
 
     jmp shell_begin
 
+section .data
 .message_error:         db          "No filename given", 13, 10, 0
 .message_name:          db          "Filename must have 12 characters", 13, 10, 0
 
+section .text
 command_rm:
     mov si, prpBuffer
     mov di, cmdRm
@@ -70,5 +83,6 @@ command_rm:
 
     jmp shell_begin
 
+section .data
 .message_error:         db          "No filename given", 13, 10, 0
 .message_name:          db          "Filename must have 12 characters", 13, 10, 0

@@ -1,5 +1,15 @@
-[bits 16]
+%include "benlib.asm"
+%include "cmdmacro.asm"
 
+extern shell_begin
+extern shell_begin.command_unknow
+extern prpBuffer
+extern cmdHelp
+
+global command_help
+
+[bits 16]
+section .text
 command_help:
     mov si, prpBuffer
     mov di, cmdHelp
@@ -69,6 +79,7 @@ command_help_reboot:
 
     jmp shell_begin
 
+section .data
 ; Parameters
 param_info:             db              "info", 0
 param_halt:             db              "halt", 0

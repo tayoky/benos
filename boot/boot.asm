@@ -15,11 +15,12 @@
 
 ; --------------- ASSEMBLER INFORMATIONS ---------------
 [bits 16]                       ; Real mode (16-bit)
-[org 0x0]                       ; Program origin
 ; ------------------------------------------------------
 
 ; --------------- CODE ---------------
-start:
+section .boot
+global _start
+_start:
 ; Cancel interrupts
     cli
 

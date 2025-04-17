@@ -10,13 +10,20 @@
 
 ; --------------- ASSEMBLER INFORMATIONS ---------------
 [bits 16]                       ; Real mode
-[org 0x0]                       ; Program origin
 ; ------------------------------------------------------
+%include "benlib.asm"
+%include "cmdmacro.asm"
 
-; Skip the includes below
-jmp start
-%include "fs/utils.asm"
-%include "kernel/cmdmacro.asm"
+extern SYS_NAME
+extern SYS_VERSION
+extern command_ls
+extern command_rm
+extern command_touch
+extern command_clear
+extern command_reboot
+extern command_halt
+extern command_info
+extern command_help
 
 ; %1 -> command
 ; %2 -> comparison subroutine
@@ -29,7 +36,9 @@ jmp start
 %endmacro
 
 ; --------------- CODE ---------------
-start:
+section .text
+global kmain
+kmain:
 ; Initialize segments
     mov ax, 0x1000
     mov ds, ax
@@ -130,23 +139,10 @@ shell_begin:
     call VIDEO_scrollup
     
     jmp shell_begin
-; ------------------------------------
-
-; --------------- INCLUDES ---------------
-%include "benlib/stdio.asm"
-%include "benlib/video.asm"
-%include "benlib/string.asm"
-%include "benlib/disk.asm"
-%include "benlib/general.asm"
-
-%include "kernel/help.asm"
-%include "kernel/info.asm"
-%include "kernel/halt.asm"
-%include "kernel/clear.asm"
-%include "kernel/fscmd.asm"
 ; ----------------------------------------
 
 ; --------------- DATA --------------------
+section .data
 ; Messages
 segInit:            db      "[ OK ] Segments initialized", 13, 10, 0
 krnLoaded:          db      "[ OK ] Kernel loaded successfully", 13, 10, 0

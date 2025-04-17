@@ -8,7 +8,7 @@
 ; ===================================================================
 
 [bits 16]
-
+section .data
 SYS_VERSION:            db          "0.0.9 Indev 2", 0  ; Current version of the system
 SYS_NAME:               db          "BenOS", 0          ; Name of the system
 SYS_LICENSE:            db          "MIT", 0            ; License of the system

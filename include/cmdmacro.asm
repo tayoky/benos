@@ -1,3 +1,5 @@
+extern STRING_compare
+
 [bits 16]
 
 %macro check_param 2

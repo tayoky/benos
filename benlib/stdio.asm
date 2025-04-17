@@ -7,6 +7,12 @@
 ; that are used to interact with the keyboard and the screen.
 ; ===================================================================
 
+global STDIO_putchar
+global STDIO_print
+global STDIO_input
+global STDIO_waitkeypress
+global NEWLINE
+
 [bits 16]
 
 NEWLINE:        db      13, 10, 0

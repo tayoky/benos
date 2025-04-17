@@ -7,8 +7,11 @@
 ; that are used to interact with the screen.
 ; ===================================================================
 
-[bits 16]
+global VIDEO_clear
+global VIDEO_scrollup
 
+[bits 16]
+section .text
 VIDEO_clear:
     mov ah, 0x00
     mov al, 0x03

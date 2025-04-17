@@ -10,8 +10,20 @@
 ; %include "benlib/disk.asm"
 ; ===================================================================
 
-[bits 16]
+;to get fs const
+%include "fs.asm"
 
+extern STDIO_print
+extern NEWLINE
+extern fileTable
+
+global DISK_error
+global DISK_list_files
+global DISK_create_file
+global DISK_remove_file
+
+[bits 16]
+section .text
 ; Use it with INT 0x13
 DISK_error:
     mov si, .msg
@@ -19,8 +31,10 @@ DISK_error:
 
     hlt
 
+section .data
 .msg:       db      "[ ERR ] An error occured while operating on disk", 13, 10, 0
 
+section .text
 DISK_list_files:
     push bx
     push cx
@@ -135,8 +149,10 @@ DISK_create_file:
 
     ret
 
+section .data
 .msg:   db "No free entry found.", 13, 10, 0
 
+section .text
 ; Input:
 ; SI -> name of the file to remove
 DISK_remove_file:
@@ -195,5 +211,6 @@ DISK_remove_file:
     pop bx
     ret
 
+section .data
 .file_name_tmp: times FILE_NAME_SIZE db 0
 .no_file:       db "File not found", 13, 10, 0
